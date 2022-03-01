@@ -74,8 +74,3 @@ impl RangeOrder for RandomRange {
         RangeIterator::new(self.start.into(),)
     }
 }
-
-#[cfg(test)]
-mod test{
-    use super::
-}
