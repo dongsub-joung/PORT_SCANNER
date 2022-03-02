@@ -39,6 +39,35 @@ impl Iterator for RangeIterator {
         }
 
         let current_pick= self.normalized_first_pick;
-        let next_pick= (cure)
+        let next_pick= (current_pcik + self. step) & self.normalized_end;
+
+        if next_pick == self.normalized_first_pick{
+            self.active= false;
+        }
+
+        self.normalized_pick= next_pick;
+        Some(
+            (Self.actual_start + current_pick)
+                .try_into()
+                .expect("Coundnot convert u32 to u16"),
+        )
     }
+}
+
+fn pick_random_coprime(end: u32) -> u32 {
+    let range_boundary= end / 4 ;
+    let lower_range= range_boundary;
+    let upper_range= end-range_boundary;
+    let mut rng= rand::thread_rng();
+    let mut candidate= rng.gen_range(lower_Rage, upper_range);
+
+    for _ in 0..10{
+        if end.gcd(candidate) == 1 {
+            return candidate;
+        } else {
+            candidate= rng.gen_range(lower_range, upper_range);
+        }
+    }
+
+    end -1 
 }
